@@ -87,18 +87,6 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-// Result 
-
-// Financial Analysis 
-// ----------------
-// Total Months: 86
-// Total: $38382578
-// Average Change: -2315.12
-// Greatest Increase in Profits/Losses: Feb-2012 ($1926159)
-// Greatest Decrease in Profits/Losses: Sep-2013 ($-2196167)
-
-
-
 
 // initialise vars for totalMonths, netChangeProfits, averageChangeInProfits
 // var greatestProfit = ['date', 0] (['feb-2012', 12321321])]
@@ -112,18 +100,25 @@ var finances = [
 
 // The total number of months included in the dataset 
 
-var netChangeProfits = 0; 
+var totalChange = 0; 
+var netChange = 0;
 var averageChangeInProfits = 0; 
 var greatestMonthlyDifference = ['',0];
 var greatestMonthlyDecrease = ['',0];
 var currentMonth = ['',0];
 
 
+// net total amount of profit / losses over the entire period
+
+for (var i = 0; i < finances.length; i++) {
+  totalChange += finances[i][1];
+}
+
 // for loop that goes from i = 1 to length of finances array 
 for (var i = 1; i < finances.length; i++) {
   monthlyDifference = finances[i][1] - finances[i-1][1];
-  var currentMonth = finances [i][0]
-  netChangeProfits = netChangeProfits + monthlyDifference;
+  netChange = netChange + monthlyDifference;
+  var currentMonth = finances [i][0];
   if (monthlyDifference >= greatestMonthlyDifference[1]) {
     greatestMonthlyDifference = [currentMonth, monthlyDifference];    
   }
@@ -133,25 +128,23 @@ for (var i = 1; i < finances.length; i++) {
 
   }
 
+// average changes 
+var avgChange = netChange/(finances.length-1);
+
+
+
 
 // The total number of months included in the dataset 
 totalMonths = finances.length; 
+
 console.log ('Total Months: ' + totalMonths);
-//
-console.log('Greatest Increase in Profits/Losses:'+ greatestMonthlyDifference[0] + ' ($ ' + greatestMonthlyDifference[1] + ')' );
-console.log('Greatest Decrease in Profits/Losses:'+ greatestMonthlyDecrease[0] + ' ($ ' + greatestMonthlyDecrease[1] + ')' );
 
+// The net total amount of Profit/Losses over the entire period.
+console.log ('Total: $' + netChange);
 
-// initalize vars for 
-// totalMonths,
-//  netChangeProfits = 0, 
-// averageChangeInProfits, 
-// var greatestProfit = ['date', 0] (['feb-2012', 123234])
-// var greatestLoss = ['date', 0]
-// to get total change between months
-// loop through the finaces array at index 1, instead of 0, 
-// current date = finances[i][0]
-// var difference for change between the current month and past month
-// difference = finaces[i][1] - finaces[i -1][1]
-// netChange = netChange + difference
-// netChangeProfits / finances.length - 1
+console.log ('Average Change: $' + avgChange.toFixed(2));
+
+//The greatest increase in Profit/Losses (date and amount) over the entire period.
+console.log('Greatest Increase in Profits/Losses:'+ greatestMonthlyDifference[0] + ' ($' + greatestMonthlyDifference[1] + ')' );
+// The greatest decrease in Profit/Losses (date and amount) over the entire period.
+console.log('Greatest Decrease in Profits/Losses:'+ greatestMonthlyDecrease[0] + ' ($' + greatestMonthlyDecrease[1] + ')' );
