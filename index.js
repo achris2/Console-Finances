@@ -112,14 +112,14 @@ var finances = [
 
 // The total number of months included in the dataset 
 
-totalMonths = finances.length; 
-console.log ('Total Months: ' + totalMonths);
 var netChangeProfits = 0; 
 var averageChangeInProfits = 0; 
 var greatestMonthlyDifference = ['',0];
+var greatestMonthlyDecrease = ['',0];
 var currentMonth = ['',0];
 
 
+// for loop that goes from i = 1 to length of finances array 
 for (var i = 1; i < finances.length; i++) {
   monthlyDifference = finances[i][1] - finances[i-1][1];
   var currentMonth = finances [i][0]
@@ -127,10 +127,19 @@ for (var i = 1; i < finances.length; i++) {
   if (monthlyDifference >= greatestMonthlyDifference[1]) {
     greatestMonthlyDifference = [currentMonth, monthlyDifference];    
   }
-}
+  else if (monthlyDifference <= greatestMonthlyDecrease[1]) {
+    greatestMonthlyDecrease = [currentMonth, monthlyDifference];    
+  }
 
+  }
+
+
+// The total number of months included in the dataset 
+totalMonths = finances.length; 
+console.log ('Total Months: ' + totalMonths);
+//
 console.log('Greatest Increase in Profits/Losses:'+ greatestMonthlyDifference[0] + ' ($ ' + greatestMonthlyDifference[1] + ')' );
-
+console.log('Greatest Decrease in Profits/Losses:'+ greatestMonthlyDecrease[0] + ' ($ ' + greatestMonthlyDecrease[1] + ')' );
 
 
 // initalize vars for 
