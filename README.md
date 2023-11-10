@@ -21,7 +21,7 @@ Navigate using your browser, in order to see the Javascript in action, you have 
 ## Screenshot
 
 
-![Screenshot](https://github.com/achris2/Bootstrap-Portfolio/blob/main/images/screenshot-latest.png)
+![Screenshot](https://github.com/achris2/Console-Finances/blob/main/assets/screenshot.png)
 
 
 ## Credits
